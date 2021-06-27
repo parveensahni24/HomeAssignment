@@ -1,0 +1,24 @@
+﻿-- Table: public.feature_usage
+
+-- DROP TABLE public.feature_usage;
+
+CREATE TABLE public.feature_usage
+(
+    feature_name character varying COLLATE pg_catalog."default" NOT NULL,
+    email character varying COLLATE pg_catalog."default" NOT NULL,
+    enable boolean NOT NULL,
+    CONSTRAINT pk PRIMARY KEY (feature_name, email)
+)
+
+TABLESPACE pg_default;
+
+ALTER TABLE public.feature_usage
+    OWNER to postgres;
+-- Index: feature_email_index
+
+-- DROP INDEX public.feature_email_index;
+
+CREATE INDEX feature_email_index
+    ON public.feature_usage USING btree
+    (feature_name COLLATE pg_catalog."default" ASC NULLS LAST, email COLLATE pg_catalog."default" ASC NULLS LAST)
+    TABLESPACE pg_default;
